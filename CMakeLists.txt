@@ -11,6 +11,7 @@ set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -O0 -ggdb")
 
 if(NOT CMAKE_BUILD_TYPE)
     message(STATUS "CMAKE_BUILD_TYPE not defined - setting to Release.")
+    set(CMAKE_BUILD_TYPE "Release")
 elseif("${CMAKE_BUILD_TYPE}" STREQUAL "Release")
     message(STATUS "CMAKE_BUILD_TYPE is Release")
 elseif("${CMAKE_BUILD_TYPE}" STREQUAL "Debug")

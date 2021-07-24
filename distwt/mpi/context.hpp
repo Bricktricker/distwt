@@ -76,7 +76,7 @@ public:
     }
 
     inline size_t node_rank() {
-        node_rank(m_rank);
+        return node_rank(m_rank);
     }
 
     inline bool same_node_as(size_t other) {

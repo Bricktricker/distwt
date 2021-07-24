@@ -4,6 +4,7 @@
 #include <mpi.h>
 
 #include <functional>
+#include <limits>
 
 #include <distwt/common/util.hpp>
 #include <distwt/mpi/context.hpp>
@@ -66,6 +67,7 @@ public:
     bool extract_local(const std::string& local_filename, size_t bufsize) {
         if(!m_extracted) {
             m_local_filename = local_filename + ".part." + std::to_string(m_rank);
+            bufsize = std::min(bufsize, static_cast<size_t>(std::numeric_limits<int>::max()));
 
             // init buffer
             std::vector<sym_t> buf(bufsize);
@@ -120,6 +122,8 @@ public:
                 func(x);
             }
         } else {
+
+            bufsize = std::min(bufsize, static_cast<size_t>(std::numeric_limits<int>::max()));
 
             // open stream and seek position
             MPI_File f;
